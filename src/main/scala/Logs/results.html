@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Résultats de l'analyse de logs</title>
+<style>
+/* Ajoutez vos styles CSS ici */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #555;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Ajoutez d'autres styles selon vos besoins */
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Résultats de l'analyse de logs</h1>
+    <h2>Chemins d'accès les plus fréquemment accédés :</h2>
+    <ul>
+    <li>/training/css/font-awesome.min.css: 592</li>
+<li>/training/css/awesome-bootstrap-checkbox.css: 591</li>
+<li>/training/css/bootstrap.min.css: 591</li>
+<li>/training/css/dataTables.bootstrap.min.css: 591</li>
+<li>/training/css/bootstrap-social.css: 591</li>
+<li>/training/css/fileinput.min.css: 591</li>
+<li>/training/css/bootstrap-select.css: 591</li>
+<li>/estudiant/wp-admin/admin-ajax.php: 431</li>
+<li>/phpmyadmin/index.php?route=/navigation&ajax_request=1: 358</li>
+<li>/training/listPays.php: 327</li>
+    </ul>
+    <!-- Ajoutez l'élément canvas pour le graphe -->
+    <canvas id="myChart" style="width:600px;height:400px;"></canvas>
+</div>
+
+<!-- Inclure la bibliothèque Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Récupérez les données du fichier JavaScript généré par Spark
+var pathsData = []; // Remplacez par vos données
+
+// Initialisez et dessinez le graphe avec Chart.js
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: pathsData.map(item => item[0]),
+        datasets: [{
+            label: 'Nombre acces',
+            data: pathsData.map(item => item[1]),
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+</body>
+</html>
+
